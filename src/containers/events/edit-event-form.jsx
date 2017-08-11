@@ -68,8 +68,68 @@ const DatePickerField = ({ input: { value, onChange } }) => (
     <StyledDatePicker selected={value} onChange={onChange} />
 );
 
+const CreatableSelectTopDirection = styled(CreatableSelect)`
+
+    font-family: Rubik, sans-serif;
+    font-size: 1.5rem;
+    margin: 1rem;
+    margin-top: 2rem;
+    position: relative;
+    
+    & .Select-input {
+    }
+
+    & .Select-control {
+        border-radius: 0;
+        overflow: visible;
+    }
+    
+    & .Select-menu-outer {
+        box-sizing: border-box;
+        border: 1px solid #ccc;
+        border-bottom-color: #e6e6e6;
+        top: auto;
+        bottom: 100%;
+        border-radius: 0;
+    }
+    
+    & .Select-value {
+        background-color: #BC71FE;
+        border: none;
+        white-space: nowrap;
+        
+        & span {
+            border: none;
+        }
+    }
+    
+    & .Select-value-label {
+        color: #fff;
+    }
+    
+    & .Select-value-icon {
+        transition: all .3s;
+        background-color: #fff;
+        color: #BC71FE;
+        margin: 3px;
+        padding: 0 3px;
+        border-radius: 50%;
+        width: 16px;
+        height: 16px;
+        box-sizing: border-box;
+        line-height: 16px;
+        font-size: 16px;
+        text-align: center;
+    }
+    
+    & .Select-value-icon:hover {
+        color: #BC71FE; 
+        background-color: #fff;
+    }
+`
+
 const TagsSelectField = ({ input: { value, onChange }, tags }) => (
-    <CreatableSelect
+    <CreatableSelectTopDirection
         options={tags.map(t => ({ value: t, label: t }))}
         value={value}
         onChange={onChange}
@@ -132,7 +192,7 @@ const Form = styled.form`
 `;
 
 const EditEventForm = ({ onSubmit, handleSubmit, onRequestClose, tags }) => (
-    <Popup isOpen contentLabel="Add new event" onRequestClose={onRequestClose}>
+    <Popup width={360} isOpen contentLabel="Add new event" onRequestClose={onRequestClose}>
         <Form
             className="e2e-add-event-form"
             onSubmit={handleSubmit(event => onSubmit({
